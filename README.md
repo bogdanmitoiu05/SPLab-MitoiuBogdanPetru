@@ -1,2 +1,2 @@
 # SPLab-MitoiuBogdanPetru
-Proiectul SP
+Proiect SP
