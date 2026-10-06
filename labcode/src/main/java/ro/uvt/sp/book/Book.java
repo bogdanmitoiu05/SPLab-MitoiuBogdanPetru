@@ -10,7 +10,6 @@ public class Book extends ElementContainer
 {
     private final List<Author> authorList;
     private String title;
-
     public Book(String title) {
         this.title = title;
         this.authorList = new ArrayList<>();

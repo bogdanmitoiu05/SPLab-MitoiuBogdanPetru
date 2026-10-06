@@ -1,13 +1,35 @@
 package ro.uvt.sp.book.elements;
 
+import ro.uvt.sp.book.Page;
+
 import java.util.Objects;
 
 public class Paragraph implements Element {
 
     private String content;
+    private Page page; //TODO: move this to Element
 
-    public Paragraph(String content) {
+    public AlignmentStrategy getAlignmentStrategy() {
+        return alignmentStrategy;
+    }
+
+    public void setAlignmentStrategy(AlignmentStrategy alignmentStrategy) {
+        this.alignmentStrategy = alignmentStrategy;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
+    }
+
+    private AlignmentStrategy alignmentStrategy;
+    public Paragraph(String content, long page) {
         this.content = content;
+        this.page = new Page(page);
+        this.alignmentStrategy = new AlignLeading();
     }
 
     public String getContent() {
@@ -32,6 +54,6 @@ public class Paragraph implements Element {
 
     @Override
     public final void print() {
-        IO.println(String.format("Paragraph %s",content));
+        alignmentStrategy.render(this, page);
     }
 }
