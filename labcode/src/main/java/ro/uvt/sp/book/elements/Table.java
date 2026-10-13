@@ -1,5 +1,7 @@
 package ro.uvt.sp.book.elements;
 
+import ro.uvt.sp.book.operations.BookVisitor;
+
 import java.util.Objects;
 
 public class Table implements Element{
@@ -26,6 +28,11 @@ public class Table implements Element{
         if (o == null || getClass() != o.getClass()) return false;
         Table table = (Table) o;
         return Objects.equals(title, table.title);
+    }
+
+    @Override
+    public void accept(BookVisitor bookVisitor) {
+        bookVisitor.visit(this);
     }
 
     @Override

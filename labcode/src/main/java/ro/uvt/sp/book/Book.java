@@ -1,16 +1,20 @@
 package ro.uvt.sp.book;
 
 import ro.uvt.sp.book.elements.Author;
+import ro.uvt.sp.book.elements.Element;
 import ro.uvt.sp.book.elements.ElementContainer;
+import ro.uvt.sp.book.elements.Section;
+import ro.uvt.sp.book.operations.BookVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book extends ElementContainer
+public class Book extends Section
 {
     private final List<Author> authorList;
     private String title;
     public Book(String title) {
+        super(title);
         this.title = title;
         this.authorList = new ArrayList<>();
     }
@@ -27,6 +31,13 @@ public class Book extends ElementContainer
         authorList.add(author);
     }
 
+    @Override
+    public void accept(BookVisitor bookVisitor){
+        bookVisitor.visit(this);
+        for(Element e : this.elementList){
+            e.accept(bookVisitor);
+        }
+    }
     @Override
     protected void beforePrint() {
         IO.println(String.format("Book %s",title));

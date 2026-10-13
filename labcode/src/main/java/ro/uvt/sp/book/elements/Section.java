@@ -1,5 +1,7 @@
 package ro.uvt.sp.book.elements;
 
+import ro.uvt.sp.book.operations.BookVisitor;
+
 import java.util.Objects;
 
 public class Section extends ElementContainer{
@@ -21,6 +23,14 @@ public class Section extends ElementContainer{
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public void accept(BookVisitor bookVisitor) {
+        bookVisitor.visit(this);
+        for(Element e : this.elementList){
+            e.accept(bookVisitor);
+        }
     }
 
     @Override
