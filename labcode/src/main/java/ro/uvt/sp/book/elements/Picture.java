@@ -1,8 +1,11 @@
 package ro.uvt.sp.book.elements;
 
+import ro.uvt.sp.book.operations.BookVisitor;
+
 public abstract class Picture implements Element{
-    protected String imageData;
-    public Picture(String imageData){
-        this.imageData = imageData;
+
+    @Override
+    public void accept(BookVisitor visitor) {
+        visitor.visit(this);
     }
 }

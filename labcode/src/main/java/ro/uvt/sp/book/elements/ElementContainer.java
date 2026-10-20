@@ -3,7 +3,7 @@ package ro.uvt.sp.book.elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElementContainer implements Element {
+public abstract class ElementContainer implements Element {
     @Override
     public final void print() {
         beforePrint();
@@ -30,5 +30,4 @@ public class ElementContainer implements Element {
     public final Element get(int idx){
         return elementList.get(idx);
     }
-
 }

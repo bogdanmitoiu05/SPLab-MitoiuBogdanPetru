@@ -1,5 +1,6 @@
 package ro.uvt.sp.book.elements;
 
+import ro.uvt.sp.book.operations.BookVisitor;
 import ro.uvt.sp.book.Page;
 
 import java.util.Objects;
@@ -31,6 +32,9 @@ public class Paragraph implements Element {
         this.page = new Page(page);
         this.alignmentStrategy = new AlignLeading();
     }
+    public Paragraph(String content){
+        this(content, 80);
+    }
 
     public String getContent() {
         return content;
@@ -53,7 +57,13 @@ public class Paragraph implements Element {
     }
 
     @Override
+    public void accept(BookVisitor bookVisitor) {
+        bookVisitor.visit(this);
+    }
+
+    @Override
     public final void print() {
         alignmentStrategy.render(this, page);
     }
+
 }

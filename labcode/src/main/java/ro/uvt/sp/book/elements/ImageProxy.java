@@ -2,8 +2,9 @@ package ro.uvt.sp.book.elements;
 
 public class ImageProxy extends Picture{
     private Image realImage = null;
+    protected String imageData;
     public ImageProxy(String imageData) {
-        super(imageData);
+        this.imageData = imageData;
     }
 
     public Image loadImage(){

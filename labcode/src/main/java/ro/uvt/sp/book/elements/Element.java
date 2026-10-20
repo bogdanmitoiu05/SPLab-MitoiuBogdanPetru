@@ -1,6 +1,8 @@
 package ro.uvt.sp.book.elements;
 
-public interface Element {
+import ro.uvt.sp.book.operations.BookVisitor;
 
+public interface Element {
     void print();
+    void accept(BookVisitor bookVisitor);
 }

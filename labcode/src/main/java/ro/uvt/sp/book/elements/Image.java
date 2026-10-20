@@ -3,9 +3,9 @@ package ro.uvt.sp.book.elements;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class Image extends Picture implements Element{
+public class Image extends Picture{
+    protected String imageData;
     public Image(String imageData) {
-        super(imageData);
         try {
             TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {
@@ -13,6 +13,8 @@ public class Image extends Picture implements Element{
         }
         this.imageData = imageData;
     }
+
+
 
     @Override
     public void print() {

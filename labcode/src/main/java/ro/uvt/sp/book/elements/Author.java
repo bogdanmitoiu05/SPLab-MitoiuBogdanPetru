@@ -2,7 +2,7 @@ package ro.uvt.sp.book.elements;
 
 import java.util.Objects;
 
-public class Author implements Element{
+public class Author{
     private String name;
     private String surname;
 
@@ -27,7 +27,6 @@ public class Author implements Element{
         this.surname = surname;
     }
 
-    @Override
     public void print() {
         IO.println(String.format("Author: %s %s",name,surname));
     }
