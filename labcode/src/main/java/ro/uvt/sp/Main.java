@@ -3,6 +3,7 @@ package ro.uvt.sp;
 import ro.uvt.sp.book.Book;
 import ro.uvt.sp.book.elements.*;
 import ro.uvt.sp.book.operations.StatisticsVisitor;
+import ro.uvt.sp.book.operations.TableOfContentsVisitor;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -27,6 +28,8 @@ public class Main {
         StatisticsVisitor stats = new StatisticsVisitor();
         myBook.accept(stats);
         stats.printStats();
-
+        TableOfContentsVisitor tableOfContentsVisitor = new TableOfContentsVisitor();
+        myBook.accept(tableOfContentsVisitor);
+        tableOfContentsVisitor.printToc();
     }
 }
