@@ -12,10 +12,9 @@ import java.util.Map;
 @Entity
 public class TableOfContents extends Element{
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<TableOfContentsEntry> index;
     @OneToOne
-    @JoinColumn(name = "book_id")
     private Book book;
 
     public Book getBook() {

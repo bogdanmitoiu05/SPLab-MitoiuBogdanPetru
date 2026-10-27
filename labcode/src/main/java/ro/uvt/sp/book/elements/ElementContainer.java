@@ -1,11 +1,14 @@
 package ro.uvt.sp.book.elements;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class ElementContainer extends Element {
     @Override
     public final void print() {
@@ -15,8 +18,7 @@ public class ElementContainer extends Element {
         }
         afterPrint();
     }
-    @OneToMany
-    @JoinColumn(name = "element_id")
+    @OneToMany(cascade = CascadeType.ALL)
     protected List<Element> elementList;
 
     protected void beforePrint(){}

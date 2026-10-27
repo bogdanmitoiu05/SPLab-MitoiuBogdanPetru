@@ -24,7 +24,8 @@ public class Book extends Section
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany(mappedBy = "books", cascade = CascadeType.ALL)
+
     private final List<Author> authorList;
     private String title;
     public Book(String title) {

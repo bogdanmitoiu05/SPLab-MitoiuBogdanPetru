@@ -1,9 +1,6 @@
 package ro.uvt.sp.book.elements;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import ro.uvt.sp.book.operations.BookVisitor;
 import ro.uvt.sp.book.Page;
 
@@ -37,7 +34,7 @@ public class Paragraph extends Element {
     }
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "alignment_strategy_id")
     private AlignmentStrategy alignmentStrategy;
     public Paragraph(String content, long page) {
