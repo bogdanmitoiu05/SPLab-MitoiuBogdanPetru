@@ -1,3 +1,21 @@
 spring:
   application:
     name: labcode
+  datasource:
+    url: jdbc:h2:file:~/h2db/booksdb
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    database: H2
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    h2:
+      console:
+        enabled: true

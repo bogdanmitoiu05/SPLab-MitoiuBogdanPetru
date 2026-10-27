@@ -1,5 +1,6 @@
 package ro.uvt.sp.book.elements;
 
+import jakarta.persistence.*;
 import ro.uvt.sp.book.Book;
 import ro.uvt.sp.book.operations.BookVisitor;
 
@@ -8,14 +9,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TableOfContents implements Element{
+@Entity
+public class TableOfContents extends Element{
 
+    @OneToMany
     private List<TableOfContentsEntry> index;
+    @OneToOne
+    @JoinColumn(name = "book_id")
     private Book book;
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
     @Override
     public void print() {
         for(TableOfContentsEntry entry : index){
-            IO.println(String.format("%s - %d",entry.text(),entry.pageNo()));
+            IO.println(String.format("%s - %d",entry.getText(),entry.getPageNo()));
         }
     }
     public TableOfContents(){

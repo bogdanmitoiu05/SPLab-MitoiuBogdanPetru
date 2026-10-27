@@ -1,9 +1,12 @@
 package ro.uvt.sp.book.elements;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ElementContainer implements Element {
+public class ElementContainer extends Element {
     @Override
     public final void print() {
         beforePrint();
@@ -12,6 +15,8 @@ public abstract class ElementContainer implements Element {
         }
         afterPrint();
     }
+    @OneToMany
+    @JoinColumn(name = "element_id")
     protected List<Element> elementList;
 
     protected void beforePrint(){}

@@ -1,12 +1,18 @@
 package ro.uvt.sp.book.elements;
 
+import jakarta.persistence.Entity;
 import ro.uvt.sp.book.operations.BookVisitor;
 
 import java.util.Objects;
 
+@Entity
 public class Section extends ElementContainer{
 
     private String title;
+
+    public Section() {
+
+    }
 
     @Override
     protected void beforePrint() {

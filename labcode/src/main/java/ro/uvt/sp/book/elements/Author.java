@@ -1,10 +1,26 @@
 package ro.uvt.sp.book.elements;
 
+import jakarta.persistence.*;
+import ro.uvt.sp.book.Book;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Author{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
     private String name;
     private String surname;
+
+    @ManyToMany
+    private List<Book> books;
+
+    public Author() {
+        this.books = new ArrayList<>();
+    }
 
     public String getName() {
         return name;

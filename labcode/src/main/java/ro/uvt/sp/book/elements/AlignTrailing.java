@@ -2,7 +2,7 @@ package ro.uvt.sp.book.elements;
 
 import ro.uvt.sp.book.Page;
 
-public class AlignTrailing implements AlignmentStrategy{
+public class AlignTrailing extends AlignmentStrategy{
     @Override
     public void render(Paragraph paragraph, Page pageContext) {
         long leadingInset = pageContext.getTotalColumns() - paragraph.getContent().length();

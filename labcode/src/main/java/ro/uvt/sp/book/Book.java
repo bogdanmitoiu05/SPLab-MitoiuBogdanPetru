@@ -1,5 +1,6 @@
 package ro.uvt.sp.book;
 
+import jakarta.persistence.*;
 import ro.uvt.sp.book.elements.Author;
 import ro.uvt.sp.book.elements.Element;
 import ro.uvt.sp.book.elements.ElementContainer;
@@ -9,8 +10,21 @@ import ro.uvt.sp.book.operations.BookVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Book extends Section
 {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    @ManyToMany(mappedBy = "books")
     private final List<Author> authorList;
     private String title;
     public Book(String title) {
@@ -18,7 +32,10 @@ public class Book extends Section
         this.title = title;
         this.authorList = new ArrayList<>();
     }
-
+    public Book(){
+        super("");
+        this.authorList = new ArrayList<>();
+    }
     public String getTitle() {
         return title;
     }
