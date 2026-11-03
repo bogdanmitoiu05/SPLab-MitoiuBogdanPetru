@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 public class Section extends ElementContainer{
 
-    private String title;
+    protected String title;
 
     public Section() {
 
