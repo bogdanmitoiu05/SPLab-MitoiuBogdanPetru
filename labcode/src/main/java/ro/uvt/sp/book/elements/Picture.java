@@ -2,7 +2,7 @@ package ro.uvt.sp.book.elements;
 
 import ro.uvt.sp.book.operations.BookVisitor;
 
-public abstract class Picture implements Element{
+public abstract class Picture extends Element{
 
     @Override
     public void accept(BookVisitor visitor) {

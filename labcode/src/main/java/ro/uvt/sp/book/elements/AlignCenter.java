@@ -2,7 +2,7 @@ package ro.uvt.sp.book.elements;
 
 import ro.uvt.sp.book.Page;
 
-public class AlignCenter implements AlignmentStrategy{
+public class AlignCenter extends AlignmentStrategy{
     @Override
     public void render(Paragraph paragraph, Page pageContext) {
         long totalInset = pageContext.getTotalColumns() - paragraph.getContent().length();

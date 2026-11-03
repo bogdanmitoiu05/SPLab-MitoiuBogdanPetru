@@ -13,26 +13,7 @@ import ro.uvt.sp.controllers.HelloController;
 @SpringBootApplication
 public class LabCodeSpringApp {
     static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(LabCodeSpringApp.class, args);
-
-        TransientComponent transientBaen = ctx.getBean(TransientComponent.class);
-        transientBaen.operation();
-
-        SingletonComponent singletonComponent = ctx.getBean(SingletonComponent.class);
-        singletonComponent.operation();
-
-        singletonComponent = ctx.getBean(SingletonComponent.class);
-        singletonComponent.operation();
-        HelloController helloController;
-        ClientComponent c = ctx.getBean(ClientComponent.class);
-        c.operation();
-        helloController = new HelloController(c);
-        IO.println(helloController.sayHi());
-        c = (ClientComponent) ctx.getBean("clientComponent");
-        c.operation();
-        helloController = new HelloController(c);
-        IO.println(helloController.sayHi());
-
+        SpringApplication.run(LabCodeSpringApp.class, args);
 
     }
 }

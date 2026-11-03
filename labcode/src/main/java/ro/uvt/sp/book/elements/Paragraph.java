@@ -1,14 +1,21 @@
 package ro.uvt.sp.book.elements;
 
+import jakarta.persistence.*;
 import ro.uvt.sp.book.operations.BookVisitor;
 import ro.uvt.sp.book.Page;
 
 import java.util.Objects;
 
-public class Paragraph implements Element {
+@Entity
+public class Paragraph extends Element {
 
     private String content;
+    @Transient
     private Page page; //TODO: move this to Element
+
+    public Paragraph() {
+
+    }
 
     public AlignmentStrategy getAlignmentStrategy() {
         return alignmentStrategy;
@@ -26,6 +33,9 @@ public class Paragraph implements Element {
         this.page = page;
     }
 
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "alignment_strategy_id")
     private AlignmentStrategy alignmentStrategy;
     public Paragraph(String content, long page) {
         this.content = content;

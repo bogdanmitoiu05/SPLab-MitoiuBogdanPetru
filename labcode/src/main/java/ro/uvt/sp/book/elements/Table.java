@@ -1,11 +1,18 @@
 package ro.uvt.sp.book.elements;
 
+import jakarta.persistence.Entity;
 import ro.uvt.sp.book.operations.BookVisitor;
 
 import java.util.Objects;
 
-public class Table implements Element{
+@Entity
+public class Table extends Element{
     public String title;
+
+    public Table() {
+
+    }
+
     @Override
     public void print() {
         IO.println(title);
