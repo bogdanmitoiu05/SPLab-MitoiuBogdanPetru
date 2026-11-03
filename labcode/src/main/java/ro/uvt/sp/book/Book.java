@@ -13,28 +13,14 @@ import java.util.List;
 @Entity
 public class Book extends Section
 {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    @ManyToMany(mappedBy = "books", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "books", cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 
     private final List<Author> authorList;
-    private String title;
     public Book(String title) {
         super(title);
-        this.title = title;
         this.authorList = new ArrayList<>();
     }
     public Book(){
-        super("");
         this.authorList = new ArrayList<>();
     }
     public String getTitle() {

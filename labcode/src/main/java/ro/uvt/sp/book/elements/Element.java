@@ -8,7 +8,7 @@ import ro.uvt.sp.book.operations.BookVisitor;
 public class Element {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    protected Long id;
 
     public void setId(Long id) {
         this.id = id;
