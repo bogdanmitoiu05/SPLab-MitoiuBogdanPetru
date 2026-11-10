@@ -5,14 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import ro.uvt.sp.book.Book;
+import ro.uvt.sp.book.BookSubject;
+import ro.uvt.sp.book.SseObserver;
 import ro.uvt.sp.book.elements.*;
 import ro.uvt.sp.book.operations.TableOfContentsVisitor;
 import ro.uvt.sp.components.ClientComponent;
 import ro.uvt.sp.repos.BookRepository;
 
 @RestController
-public record HelloController(ClientComponent clientComponent, BookRepository bookRepository) {
+public record HelloController(ClientComponent clientComponent, BookRepository bookRepository, BookSubject bookSubject) {
 
 
     @PostMapping("/createBook")
@@ -37,10 +41,16 @@ public record HelloController(ClientComponent clientComponent, BookRepository bo
         myBook.accept(tableOfContentsVisitor);
 
         bookRepository.save(myBook);
-
+        bookSubject.notifyObservers(myBook);
         return myBook;
     }
 
+    @RequestMapping("/books-sse")
+    public ResponseBodyEmitter getBooksSse(){
+        final SseEmitter emitter = new SseEmitter(0L);
+        bookSubject.registerObserver(new SseObserver(emitter));
+        return emitter;
+    }
     @GetMapping("/books/{id}")
     public Book getBookById(@PathVariable Long id){
         if(bookRepository.existsBookById(id)){
@@ -66,8 +76,8 @@ public record HelloController(ClientComponent clientComponent, BookRepository bo
         bookRepository.deleteById(id);
     }
 
-    @GetMapping("/")
+   /* @GetMapping("/")
     public String sayHi(){
         return "Hello from ClientComponent "+clientComponent;
-    }
+    }*/
 }
